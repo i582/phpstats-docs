@@ -24,11 +24,11 @@ To create a graph in the internal interactive shell, use the `graph` command, wh
 
 ## Class (or interface) dependencies
 
-Example ([svg](/phpstats/assets/images/graphs/class_deps_graph.svg)):
-![](/phpstats/assets/images/graphs/class_graph_preview.png)
+Example ([svg](/phpstats-docs/assets/images/graphs/class_deps_graph.svg)):
+![](/phpstats-docs/assets/images/graphs/class_graph_preview.png)
 
 Includes the usual relationships between classes, as well as separate extend and implementation relationships.
-![](/phpstats/assets/images/graphs/class_graph_inheritance_part.png)
+![](/phpstats-docs/assets/images/graphs/class_graph_inheritance_part.png)
 
 To build a graph, use the `graph class` command.
 
@@ -57,8 +57,8 @@ graph class -o graph.svg --inheritance \Symfony\Component\Routing\Router
 
 ## Class (interface) extend and implementation dependencies
 
-Example ([svg](/phpstats/assets/images/graphs/inhiritance_graph.svg)):
-![](/phpstats/assets/images/graphs/class_inheritance_preview.png)
+Example ([svg](/phpstats-docs/assets/images/graphs/inhiritance_graph.svg)):
+![](/phpstats-docs/assets/images/graphs/class_inheritance_preview.png)
 
 Contains only extend and implementation links.
 
@@ -66,8 +66,8 @@ To get the graph, use the same command as for the graph above. See the last exam
 
 ## Function or method dependencies
 
-Example ([svg](/phpstats/assets/images/graphs/function_graph.svg)):
-![](/phpstats/assets/images/graphs/function_deps_preview.png)
+Example ([svg](/phpstats-docs/assets/images/graphs/function_graph.svg)):
+![](/phpstats-docs/assets/images/graphs/function_deps_preview.png)
 
 Contains the functions to be called as well as the fields used. For convenience, fields and methods are combined into named groups for each class.
 
@@ -90,8 +90,8 @@ graph func -o graph.svg \Symfony\Component\Routing\Route::setDefaults
 
 ## Links within a class (or graph for the LCOM 4 metric)
 
-Example ([svg](/phpstats/assets/images/graphs/class_lcom4_graph.svg)):
-![](/phpstats/assets/images/graphs/class_lcom4_preview.png)
+Example ([svg](/phpstats-docs/assets/images/graphs/class_lcom4_graph.svg)):
+![](/phpstats-docs/assets/images/graphs/class_lcom4_preview.png)
 
 Contains links within the class. Elements that are not used anywhere are highlighted in a separate group.
 
@@ -114,9 +114,9 @@ graph lcom4 -o graph.svg \Symfony\Component\Console\Command\Command
 
 ## Links between files
 
-Example ([svg](/phpstats/assets/images/graphs/file_graph.svg)):
+Example ([svg](/phpstats-docs/assets/images/graphs/file_graph.svg)):
 
-![](/phpstats/assets/images/graphs/file_graph_preview.png)
+![](/phpstats-docs/assets/images/graphs/file_graph_preview.png)
 
 Contains links between files, through inclusion in the global space and at the function level. Block connections are marked with dotted lines, global ones — with dashed.
 
@@ -144,9 +144,9 @@ graph file -o graph.svg wp-load.php
 
 ## Namespace dependencies graph
 
-Example ([svg](/phpstats/assets/images/graphs/namespace_deps_graph.svg)):
+Example ([svg](/phpstats-docs/assets/images/graphs/namespace_deps_graph.svg)):
 
-![](/phpstats/assets/images/graphs/namespace_deps_graph_preview.png)
+![](/phpstats-docs/assets/images/graphs/namespace_deps_graph_preview.png)
 
 Contains links between namespaces.
 
@@ -170,9 +170,9 @@ graph namespace --web \Symfony\Bridge\Doctrine -r 2
 
 ## Namespace structure graph
 
-Example ([svg](/phpstats/assets/images/graphs/namespace_graph.svg)):
+Example ([svg](/phpstats-docs/assets/images/graphs/namespace_graph.svg)):
 
-![](/phpstats/assets/images/graphs/namespace_graph_preview.png)
+![](/phpstats-docs/assets/images/graphs/namespace_graph_preview.png)
 
 Contains the relationships between namespaces and their child namespaces.
 
