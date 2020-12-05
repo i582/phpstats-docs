@@ -20,7 +20,8 @@ The command accepts the following flags:
 4. `--exclude` — a comma-separated list of functions without spaces to be excluded from found paths. Thus, if the path contains a function from this list, then this path will not be displayed;
 5. `--show` — show reachability paths;
 6. `-c` — number of paths for output (by default: 10);
-7. `-o` — offset of the first path for output (default: 0).
+7. `-o` — offset of the first path for output (default: 0);
+8. `--json` — path to the file for outputting information in the `json` format.
 
 For example:
 
@@ -41,6 +42,32 @@ Showing 1 paths out of 1 starting from 1:
         -> \SomeClass::OtherMethod
            -> \someFunc]
 
+```
+
+And the command:
+
+```
+>>> relation func-reachability --parent \someOtherFunc --child \someFunc --show --depth 10 --json reachability.json
+```
+
+Will output information to the file `reachability.json`:
+
+```json
+{
+	"parent_functions": "\\someOtherFunc",
+	"child_functions": "\\someFunc",
+	"excluded": null,
+	"count": 1,
+	"offset": 0,
+	"paths": [
+		[
+			"\\someOtherFunc",
+			"\\SomeClass::Method",
+			"\\SomeClass::OtherMethod",
+			"\\someFunc"
+		]
+	]
+}
 ```
 
 By default, all paths are sorted in ascending order of the number of calls. Due to the possible large number of paths, by default only the first 10 reachability paths are displayed.

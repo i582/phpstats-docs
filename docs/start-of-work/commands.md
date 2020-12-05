@@ -100,6 +100,8 @@ Shows a list of classes of 5 elements starting with the 3rd:
 
 ```
 >>> list classes -c 5 -o 2
+Showing 5 classes out of 39 starting from 3
+
  #                      Name                      Aff     Eff    Instab   LCOM    LCOM 4   Class   Classes
                                                   coup   coup                              deps    depends
 --- -------------------------------------------- ------ ------- -------- ------- -------- ------- ---------
@@ -123,7 +125,7 @@ And the command:
 
 Will output information to the file `classes.json`:
 
-```
+```json
 [
 	{
 		"name": "\\Symfony\\Component\\DependencyInjection\\Tests\\Compiler\\AutowirePassTest",
@@ -151,7 +153,7 @@ See [Building graphs](/phpstats-docs/docs/capabilities/graphs/) for details.
 
 The `relation` command is used to collect statistics on relationships between classes and functions.
 
-See [Relationships between symbols](/phpstats-docs/docs/capabilities/relations/) for details.
+See [Relationships between symbols](/phpstats-docs/docs/capabilities/relations/) and  [Function reachability](/phpstats-docs/docs/capabilities/function_reachability/) for details.
 
 ## brief
 
