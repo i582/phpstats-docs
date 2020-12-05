@@ -97,21 +97,24 @@ Class \TargetClassA connection with function \TargetClassB::targetMethod.
 
 - Functions **belong to the same class**;
 - Does the **first function use the second** and vice versa;
-- Whether the **first function is reachable from the second through calls** and vice versa (*+ call stacks to reach the function*).
+- Whether the **first function is reachable from the second through calls** and vice versa (see [Function reachability](/phpstats-docs/docs/capabilities/function_reachability/) for details.).
 
 For example:
 
 ```
->>> relation all --funcs 'someOtherFunc,someFunc'
+>>> relation all --funcs someOtherFunc,someFunc
 Function \someOtherFunc connection with function \someFunc.
 
     Functions belong to the same class:                             false
     Function \someFunc is used in function \someOtherFunc:          false
     Function \someOtherFunc is used in function \someFunc:          false
     Is function \someFunc reachable from function \someOtherFunc:   true
-    The function is reachable by the following calls:
-        [\someOtherFunc -> \SomeClass::Method -> \SomeClass::OtherMethod -> \someFunc]
+       To get the graph, enter command
+       graph func-reachability --web --parent \someOtherFunc --child \someFunc --depth 10
+       To get text output of paths, enter the command
+       relation func-reachability --parent \someOtherFunc --child \someFunc --show --depth 10
 
     Is function \someOtherFunc reachable from function \someFunc:   false
-```
 
+>>> 
+```

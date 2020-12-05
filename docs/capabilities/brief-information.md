@@ -45,6 +45,7 @@ Structure
     Files:                                             5323
     Namespaces:                                        1680
     Interfaces:                                         423
+    Traits:                                              10
     Classes                                            4974
         Abstract Classes:                               218 (4.04%)
         Concrete Classes:                              4756 (95.96%)

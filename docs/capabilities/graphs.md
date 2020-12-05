@@ -193,3 +193,31 @@ For example, to create the graph above, the following command was used:
 ```
 graph namespace-structure --web \Symfony\Component\PropertyInfo
 ```
+
+## Function reachability
+
+Example ([svg](/phpstats-docs/assets/images/graphs/func_reachability_graph.svg)):
+
+![](/phpstats-docs/assets/images/graphs/func_reachability_graph_preview.png)
+
+Contains all the ways in which function A can be reached from function B.
+
+To get a graph, use the `graph func-reachability` command.
+
+The command can also accept flags:
+
+1. `--parent` — the name of the function **from which** the reachability will be checked;
+2. `--child` — function **for which** reachability will be checked;
+3. `--depth` — max search depth. Reachability will only be found if the function is called through no more than depth functions. Greater depth for large projects can lead to long run times;
+4. `--exclude` — a comma-separated list of functions without spaces to be excluded from found paths. Thus, if the path contains a function from this list, then this path will not be displayed;
+5. `-o` — name of the file to which the graph will be saved;
+6. `-r` — the level of nesting that is required (value 0 displays only the closest children, 1 — also displays all the closest children for the closest children, and so on);
+7. `--web` — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph.
+
+#### Example
+{: .no_toc  }
+For example, to create the graph above, the following command was used:
+
+```
+graph func-reachability --web --parent \WP_REST_Users_Controller::create_item --child \wp_unslash --depth 10
+```

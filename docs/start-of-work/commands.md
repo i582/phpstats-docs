@@ -18,14 +18,16 @@ parent: Start of work
 
 ## info
 
-The `info` command is used to get information about classes, files, functions and namespaces.
+The `info` command is used to get information about specific symbol.
 
 The command accepts the following subcommands:
 
-1. `class` or `interface` — information about the class or interface;
-2. `func` or `method` — information about a function or method;
-3. `namespace` — information about the namespace;
-4. `file` — information about the file.
+1. `class` — information about the specific class;
+2. `interface` — information about the specific interface;
+3. `trait` — information about the specific trait;
+4. `func` or `method` — information about a specific function or method;
+5. `namespace` — information about the specific namespace;
+6. `file` — information about the specific file.
 
 For each subcommand, you need to pass the required name, be it a class or a function or something else.
 Please note that the search is **not strict**, so it is not necessary to enter the full name, however, if several options are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.
@@ -56,16 +58,17 @@ Class \Foo
 
 ## list
 
-The `list` command is used to list classes, files, functions, and namespaces.
+The `list` command is used to list symbols.
 
 The command accepts the following subcommands:
 
-1. `class` — list of classes;
-2. `interface` or `ifaces` — list of interfaces;
-3. `func` — list of functions;
-4. `method` — list of methods;
-5. `namespace` — list of namespaces;
-6. `file` — list of files.
+1. `classes` — list of classes;
+2. `interfaces` or `ifaces` — list of interfaces;
+3. `traits` — list of traits;
+4. `funcs` — list of functions;
+5. `methods` — list of methods;
+6. `namespaces` — list of namespaces;
+7. `files` — list of files.
 
 For each subcommand, you need to pass the required name, be it a class or a function or something else.
 Please note that the search is **not strict**, so it is not necessary to enter the full name, however, if several options are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.

@@ -39,7 +39,8 @@ PhpStats currently represents four areas:
 1. Collecting code **metrics**;
 2. Building **dependency graphs**;
 3. Analysis of **relationships between symbols**;
-4. Gathering **brief information** about the project.
+4. Gathering **brief information** about the project;
+5. Analysis of the **reachability** of a function.
 
 It also allows you to **view lists** of *classes, interfaces, functions, methods, files and namespaces* in a **tabular form** with the **ability to sort by metrics**.
 
