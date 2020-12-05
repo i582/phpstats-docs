@@ -142,19 +142,19 @@ Will output information to the file `classes.json`:
 
 The `graph` command is used to create dependency graphs for classes, files, functions, and namespaces.
 
-See [Building graphs](/phpstats/docs/capabilities/graphs/) for details.
+See [Building graphs](/phpstats-docs/docs/capabilities/graphs/) for details.
 
 ## relation
 
 The `relation` command is used to collect statistics on relationships between classes and functions.
 
-See [Relationships between symbols](/phpstats/docs/capabilities/relations/) for details.
+See [Relationships between symbols](/phpstats-docs/docs/capabilities/relations/) for details.
 
 ## brief
 
 The `brief` command is used to view brief information about the project.
 
-See [Brief information](/phpstats/docs/capabilities/brief-information/) for details.
+See [Brief information](/phpstats-docs/docs/capabilities/brief-information/) for details.
 
 ## metrics
 
