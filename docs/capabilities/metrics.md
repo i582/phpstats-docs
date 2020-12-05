@@ -17,9 +17,9 @@ parent: Capabilities
 
 **PhpStats** collects various quality metrics of the code, which can be used to determine the quality of the project as a whole, or, for example, of the class in particular.
 
-There is no separate command for getting metrics, since metrics are displayed in the information about the symbol. So, for example, to get the LCOM4 metric for a certain class, you need to use the `info class` command for which write the name of the required class. The received class information will contain a field describing the LCOM4 metric. See the detailed description of the `info` command [here](/phpstats/docs/start-of-work/commands#info).
+There is no separate command for getting metrics, since metrics are displayed in the information about the symbol. So, for example, to get the LCOM4 metric for a certain class, you need to use the `info class` command for which write the name of the required class. The received class information will contain a field describing the LCOM4 metric. See the detailed description of the `info` command [here](/phpstats-docs/docs/start-of-work/commands#info).
 
-Another option to get the value of the metrics is the `list` command, which will list classes, functions, etc. with all calculated metrics. See the detailed description of the `list` command [here](/phpstats/docs/start-of-work/commands#list).
+Another option to get the value of the metrics is the `list` command, which will list classes, functions, etc. with all calculated metrics. See the detailed description of the `list` command [here](/phpstats-docs/docs/start-of-work/commands#list).
 
 ## Available metrics
 
