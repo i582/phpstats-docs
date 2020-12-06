@@ -57,7 +57,8 @@ PhpStats currently calculates the following metrics:
 5. Lack of Cohesion in Methods;
 6. Lack of Cohesion in Methods 4 (or the number of connected components of the class.);
 7. Cyclomatic Complexity;
-8. Count of magic numbers in functions and methods.
+8. Count of magic numbers in functions and methods;
+9. Count fully typed methods.
 
 ### Dependency graphs
 
@@ -69,7 +70,8 @@ PhpStats is currently building the following dependency graphs:
 4. Links within a class (or graph for the LCOM 4 metric);
 5. Links between files (included in global and in function);
 6. Namespace dependencies graph;
-7. Namespace structure graph.
+7. Namespace structure graph;
+8. Function reachability graph.
 
 [Graphviz](https://graphviz.org/download/) is used to build graphs.
 
@@ -132,6 +134,7 @@ Structure
     Files:                                             5323
     Namespaces:                                        1680
     Interfaces:                                         423
+    Traits                                               10
     Classes                                            4974
         Abstract Classes:                               218 (4.04%)
         Concrete Classes:                              4756 (95.96%)

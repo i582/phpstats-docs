@@ -32,7 +32,8 @@ PhpStats currently calculates the following metrics:
 5. Lack of Cohesion in Methods;
 6. Lack of Cohesion in Methods 4 (or the number of connected components of the class.);
 7. Cyclomatic Complexity;
-8. Count of magic numbers in functions and methods.
+8. Count of magic numbers in functions and methods;
+9. Count fully typed methods.
 
 ### Afferent couplings (Ca)
 
