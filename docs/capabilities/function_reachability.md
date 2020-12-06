@@ -15,7 +15,7 @@ Use the `relation func-reachability` command to get reachability information. Th
 The command accepts the following flags:
 
 1. `--parent` — the name of the function **from which** the reachability will be checked;
-2. `--child` — function **for which** reachability will be checked;
+2. `--child` — the name of the function **for which** reachability will be checked;
 3. `--depth` — max search depth. Reachability will only be found if the function is called through no more than depth functions. Greater depth for large projects can lead to long run times;
 4. `--exclude` — a comma-separated list of functions without spaces to be excluded from found paths. Thus, if the path contains a function from this list, then this path will not be displayed;
 5. `--show` — show reachability paths;
