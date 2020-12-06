@@ -54,8 +54,8 @@ Will output information to the file `reachability.json`:
 
 ```json
 {
-	"parent_functions": "\\someOtherFunc",
-	"child_functions": "\\someFunc",
+	"parentFunctions": "\\someOtherFunc",
+	"childFunctions": "\\someFunc",
 	"excluded": null,
 	"count": 1,
 	"offset": 0,

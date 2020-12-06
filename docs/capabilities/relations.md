@@ -43,6 +43,12 @@ And for two functions:
 >>> relation all --funcs='Foo::method,someFunc'
 ```
 
+And for function and class:
+
+```
+>>> relation all --classes='Foo' --funcs='someFunc'
+```
+
 ## Collected relationships
 
 ### For **class-class** relations:
@@ -59,14 +65,21 @@ Class \TargetClass connection with class \RelatedClass.
 
     Class \TargetClass extends class \RelatedClass:         true
     Class \TargetClass implements interface \RelatedClass:  false
-    Class \TargetClass uses method \RelatedClass::relatedMethod in method \TargetClass::targetMethod.
-    Class \TargetClass uses field \RelatedClass::field in method \TargetClass::targetMethod.
-    Class \TargetClass uses constant \RelatedClass::CONSTANT in method \TargetClass::targetMethod.
+    Class \TargetClass uses
+         method   \RelatedClass::relatedMethod
+            in method \TargetClass::targetMethod.
+         field    \RelatedClass::field
+            in method \TargetClass::targetMethod.
+         constant \RelatedClass::CONSTANT
+            in method \TargetClass::targetMethod.
 
     Class \RelatedClass extends class \TargetClass:         false
     Class \RelatedClass implements interface \TargetClass:  false
-    Class \RelatedClass uses method \TargetClass::targetMethod in method \RelatedClass::relatedMethod.
-    Class \RelatedClass uses field \TargetClass::some in method \RelatedClass::relatedMethod.
+    Class \RelatedClass uses
+         method   \TargetClass::targetMethod
+            in method \RelatedClass::relatedMethod.
+         field    \TargetClass::some
+            in method \RelatedClass::relatedMethod.
 ```
 
 ### For **class-function** relations:
@@ -83,14 +96,15 @@ Class \TargetClassA connection with function \TargetClassB::targetMethod.
 
     Class \TargetClassA contains function \TargetClassB::targetMethod:   false
     Method \TargetClassB::targetMethod uses class \TargetClassA:         true
-       As:
+       Uses:
+        method   \TargetClassA::targetMethod1
         field    \TargetClassA::field
         constant \TargetClassA::CONSTANT
 
     Class \TargetClassA uses function \TargetClassB::targetMethod:       true
     Uses in the following methods:
-        \TargetClassA::targetMethod1
         \TargetClassA::targetMethod2
+        \TargetClassA::targetMethod1
 ```
 
 ### For **function-function** relations:
@@ -110,11 +124,9 @@ Function \someOtherFunc connection with function \someFunc.
     Function \someOtherFunc is used in function \someFunc:          false
     Is function \someFunc reachable from function \someOtherFunc:   true
        To get the graph, enter command
-       graph func-reachability --web --parent \someOtherFunc --child \someFunc --depth 10
+        graph func-reachability --web --parent \someOtherFunc --child \someFunc --depth 10
        To get text output of paths, enter the command
-       relation func-reachability --parent \someOtherFunc --child \someFunc --show --depth 10
+        relation func-reachability --parent \someOtherFunc --child \someFunc --show --depth 10
 
     Is function \someOtherFunc reachable from function \someFunc:   false
-
->>> 
 ```

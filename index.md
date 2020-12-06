@@ -9,7 +9,7 @@ permalink: /
 # Take a look at your project from the inside with PhpStats
 {: .fs-9  .no_toc }
 
-With PhpStats you can find places in the code that need improvement, as well as be able to consider how various symbols of your system are communicated in the form of graphs, and all this is incredibly fast *(analysis of the entire Symfony project (about 1.5kk lines of code) will take no more than **15 seconds** from the second analysis)*.
+With PhpStats you can find places in the code that need improvement, as well as be able to consider how various symbols of your system are communicated in the form of graphs, and all this is incredibly fast *(analysis of the entire Symfony project (about 600k lines of code) will take no more than **5 seconds** from the second analysis)*.
 {: .fs-6 .fw-300 }
 
 [Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/i582/phpstats){: .btn .fs-5 .mb-4 .mb-md-0 }
@@ -55,7 +55,7 @@ PhpStats currently calculates the following metrics:
 3. Instability:
 4. Abstractness;
 5. Lack of Cohesion in Methods;
-6. Lack of Cohesion in Methods 4 (or the number of connected components of the class.);
+6. Lack of Cohesion in Methods 4 (*or the number of connected components of the class*);
 7. Cyclomatic Complexity;
 8. Count of magic numbers in functions and methods;
 9. Count fully typed methods.
@@ -67,8 +67,8 @@ PhpStats is currently building the following dependency graphs:
 1. Class (or interface) dependencies;
 2. Class (interface) extend and implementation dependencies;
 3. Function or method dependencies;
-4. Links within a class (or graph for the LCOM 4 metric);
-5. Links between files (included in global and in function);
+4. Links within a class (*or graph for the LCOM 4 metric*);
+5. Links between files (*included in global and in functions*);
 6. Namespace dependencies graph;
 7. Namespace structure graph;
 8. Function reachability graph.

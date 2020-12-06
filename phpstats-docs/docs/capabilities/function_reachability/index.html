@@ -11,8 +11,8 @@ Showing 1 paths out of 1 starting from 1:
 
 </code></pre></div></div><p>And the command:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; relation func-reachability --parent \someOtherFunc --child \someFunc --show --depth 10 --json reachability.json
 </code></pre></div></div><p>Will output information to the file <code class="language-plaintext highlighter-rouge">reachability.json</code>:</p><div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="nl">"parent_functions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">someOtherFunc"</span><span class="p">,</span><span class="w">
-	</span><span class="nl">"child_functions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">someFunc"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"parentFunctions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">someOtherFunc"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"childFunctions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">someFunc"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"excluded"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">

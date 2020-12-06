@@ -30,7 +30,7 @@ The command accepts the following subcommands:
 6. `file` — information about the specific file.
 
 For each subcommand, you need to pass the required name, be it a class or a function or something else.
-Please note that the search is **not strict**, so it is not necessary to enter the full name, however, if several options are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.
+Please note that the search is **not strict**, so it is not necessary to enter the full name, however, if several symbols are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.
 
 ### Example
 {: .no_toc }
@@ -43,17 +43,16 @@ Will show information about the `Foo` class:
 
 ```
 >>> info class Foo
-Show info about Foo class
+Show information about \Foo class
 
-Class \Foo
-  File:                          /path/to/file/with/foo/foo.php
-  Afferent coupling:             0.00
-  Efferent coupling:             3.00
-  Instability:                   1.00
-  Lack of Cohesion in Methods:   -1.00
-  Lack of Cohesion in Methods 4: 1
-  Count class dependencies:      3
-  Count dependent classes:       0
+   Afferent coupling:             1.00
+   Efferent coupling:             1.00
+   Instability:                   0.50
+   Lack of Cohesion in Methods:   -1.00
+   Lack of Cohesion in Methods 4: 1
+   Count class dependencies:      1
+   Count dependent classes:       1
+   Count fully typed methods:     0(1)
 ```
 
 ## list
@@ -71,7 +70,7 @@ The command accepts the following subcommands:
 7. `files` — list of files.
 
 For each subcommand, you need to pass the required name, be it a class or a function or something else.
-Please note that the search is **not strict**, so it is not necessary to enter the full name, however, if several options are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.
+Please note that the search is **not strict**, so it is not necessary to enter the full name, however, if several symbols  are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.
 
 Also, each of the subcommands accepts the following flags:
 
@@ -102,19 +101,20 @@ Shows a list of classes of 5 elements starting with the 3rd:
 >>> list classes -c 5 -o 2
 Showing 5 classes out of 4862 starting from 3
 
- #                    Name                      Aff      Eff    Instab   LCOM   LCOM 4   Class   Classes    Count fully  
-                                                coup    coup                             deps    depends   typed methods 
---- ----------------------------------------- -------- ------- -------- ------ -------- ------- --------- ---------------
- 3   \Symfony\Component\HttpFoundation\        233.00   12.00     0.05   0.82        2      12       233           6(84) 
-     Request                                                                                                             
- 4   \Symfony\Component\HttpFoundation\        163.00    5.00     0.03   0.36        2       5       163          47(60) 
-     Response                                                                                                            
- 5   \Symfony\Component\DependencyInjection\   158.00    0.00     0.00   0.33        1       0       158            0(3) 
-     Reference                                                                                                           
- 6   \Symfony\Component\Console\Command\       118.00    9.00     0.07   0.93        3       9       118           0(37) 
-     Command                                                                                                             
- 7   \Symfony\Component\HttpFoundation\        115.00    1.00     0.01   0.29        1       1       115           0(17) 
-     ParameterBag                                                       
+ #                    Name                     Aff    Eff    Instab   LCOM   LCOM   Class   Classes    Fully
+                                               coup   coup   ility            4     deps    depends    typed
+                                                                                                      methods
+--- ----------------------------------------- ------ ------ -------- ------ ------ ------- --------- ---------
+ 3   \Symfony\Component\HttpFoundation\         233     12     0.05   0.82      2      12       233     6(84)
+     Request
+ 4   \Symfony\Component\HttpFoundation\         163      5     0.03   0.36      2       5       163    47(60)
+     Response
+ 5   \Symfony\Component\DependencyInjection\    158      0     0.00   0.33      1       0       158      0(3)
+     Reference
+ 6   \Symfony\Component\Console\Command\        118      9     0.07   0.93      3       9       118     0(37)
+     Command
+ 7   \Symfony\Component\HttpFoundation\         115      1     0.01   0.29      1       1       115     0(17)
+     ParameterBag                                          
 ```
 
 And the command:
