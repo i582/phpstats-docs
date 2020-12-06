@@ -79,172 +79,184 @@
   },"13": {
     "doc": "Configuration",
     "title": "Configuration",
-    "content": "After installing PhpStats, you need to create a configuration file for the analyzed project. Note: This part of the setup needs to be done for each project that you want to analyze! . The first step is to go to the root folder of the project you want to analyze. Then, in the terminal, write the following command: . $ ~/go/bin/phpstats init . Answer the wizard’s questions. Please note that when you enter the path to the source code, the correctness of the path is checked, so adding a path that does not exist will not allowed. After that, a configuration file will appear in the project folder. This completes the PhpStats configuration for currently analyzed projects. ",
+    "content": " ",
     "url": "http://localhost:4000/phpstats-docs/docs/configuration/",
     "relUrl": "/docs/configuration/"
   },"14": {
+    "doc": "Configuration",
+    "title": "Table of contents",
+    "content": ". | Configuration file structure . | projectName | include | exclude | port | cacheDir | disableCache | projectPath | extensions | . | . After installing PhpStats, you need to create a configuration file for the analyzed project. Note: This part of the setup needs to be done for each project that you want to analyze! . The first step is to go to the root folder of the project you want to analyze. Then, in the terminal, write the following command: . $ ~/go/bin/phpstats init . Answer the wizard’s questions. Please note that when you enter the path to the source code, the correctness of the path is checked, so adding a path that does not exist will not allowed. After that, a configuration file will appear in the project folder. This completes the PhpStats configuration for currently analyzed projects. ",
+    "url": "http://localhost:4000/phpstats-docs/docs/configuration/#table-of-contents",
+    "relUrl": "/docs/configuration/#table-of-contents"
+  },"15": {
+    "doc": "Configuration",
+    "title": "Configuration file structure",
+    "content": "PhpStats uses the yaml markup language for the configuration file. By default, when PhpStats starts, the config file is searched for in the current working folder with the name phpstats.yml, if you want to use the file from another location, then use the --config-path flag at startup to set the path to the file. For example: . $ ~/go/bin/phpstats collect --config-path path/to/config . projectName . type: string . Name of the project. Shown in the output of the brief command. include . type: string array . Directories and files for analysis relative to the configuration files directory. exclude . type: string array . Directories and files excluded from analysis. Please note that for correct work, you need to add a slash at the end so that only the necessary folders are excluded, and not all that have the same value in the path. For example: \"src/utils\" can exclude both the desired \"src/utils\" folder and the \"src/utilsForMe\" folder for example. By default, it is empty . port . type: number . The port on which the server will be launched to interact with the analyzer from other programs. By default, it is 8080 . cacheDir . type: string . The path where the cache will be stored. Caching can significantly speed up data collection. By default, it is set to the value of the $TMP/phpstats. disableCache . type: bool . Disables caching. By default, it is false . projectPath . type: string . Path to the project relative to which all imports are allowed. By default, it is equal to the analyzed directory. extensions . type: string array . File extensions to be included in the analysis. By default, it is [php, inc, php5, phtml]. ",
+    "url": "http://localhost:4000/phpstats-docs/docs/configuration/#configuration-file-structure",
+    "relUrl": "/docs/configuration/#configuration-file-structure"
+  },"16": {
     "doc": "Function reachability",
     "title": "Function reachability",
     "content": "PhpStats allows you to flexibly get information about the reachability of a function from another function. Use the relation func-reachability command to get reachability information. The command displays whether the function is reachable and, if the --show flag is provided, displays all reachability paths. The command accepts the following flags: . | --parent — the name of the function from which the reachability will be checked; | --child — the name of the function for which reachability will be checked; | --depth — max search depth. Reachability will only be found if the function is called through no more than depth functions. Greater depth for large projects can lead to long run times; | --exclude — a comma-separated list of functions without spaces to be excluded from found paths. Thus, if the path contains a function from this list, then this path will not be displayed; | --show — show reachability paths; | -c — number of paths for output (by default: 10); | -o — offset of the first path for output (default: 0); | --json — path to the file for outputting information in the json format. | . For example: . relation func-reachability --parent \\someOtherFunc --child \\someFunc --show --depth 10 . Gives the following output: . &gt;&gt;&gt; relation func-reachability --parent \\someOtherFunc --child \\someFunc --show --depth 10 Is function \\someFunc reachable from function \\someOtherFunc: true (1 paths) Showing 1 paths out of 1 starting from 1: [(3 calls) \\someOtherFunc -&gt; \\SomeClass::Method -&gt; \\SomeClass::OtherMethod -&gt; \\someFunc] . And the command: . &gt;&gt;&gt; relation func-reachability --parent \\someOtherFunc --child \\someFunc --show --depth 10 --json reachability.json . Will output information to the file reachability.json: . { \"parent_functions\": \"\\\\someOtherFunc\", \"child_functions\": \"\\\\someFunc\", \"excluded\": null, \"count\": 1, \"offset\": 0, \"paths\": [ [ \"\\\\someOtherFunc\", \"\\\\SomeClass::Method\", \"\\\\SomeClass::OtherMethod\", \"\\\\someFunc\" ] ] } . By default, all paths are sorted in ascending order of the number of calls. Due to the possible large number of paths, by default only the first 10 reachability paths are displayed. For function reachability it is also possible to build a graph, see here for details. ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/function_reachability/",
     "relUrl": "/docs/capabilities/function_reachability/"
-  },"15": {
+  },"17": {
     "doc": "Building graphs",
     "title": "Building graphs",
     "content": " ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/",
     "relUrl": "/docs/capabilities/graphs/"
-  },"16": {
+  },"18": {
     "doc": "Building graphs",
     "title": "Table of contents",
     "content": ". | Class (or interface) dependencies | Class (interface) extend and implementation dependencies | Function or method dependencies | Links within a class (or graph for the LCOM 4 metric) | Links between files | Namespace dependencies graph | Namespace structure graph | Function reachability | . PhpStats allows you to create various graphs that display certain relationships in the code. There are two ways to output, directly to svg and in the browser. The first option (default) is perfect if you need to save and send the graph to someone, the second (see flag --web) is ideal for immediate viewing. When displayed in a browser, the resulting graph can be moved, as well as its scale, using the mouse wheel. To try it, download one of the graphs below and open it in a separate browser tab (unfortunately, if you open the graph from github, then nothing will work, since github prohibits the use of internal scripts, which are necessary for interactive work). To create a graph in the internal interactive shell, use the graph command, which accepts another command that determines the type of the graph. Description and examples of commands below. ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#table-of-contents",
     "relUrl": "/docs/capabilities/graphs/#table-of-contents"
-  },"17": {
+  },"19": {
     "doc": "Building graphs",
     "title": "Class (or interface) dependencies",
     "content": "Example (svg): . Includes the usual relationships between classes, as well as separate extend and implementation relationships. To build a graph, use the graph class command. The command takes one argument, the name of the class. The command can also accept flags: . | -o — name of the file to which the graph will be saved; | -r — the level of nesting that is required (value 0 displays only the closest dependencies, 1 — also displays all the closest dependencies for the closest dependencies, and so on); | --inheritance — flag, when set, the graph will be displayed only with extends or implementation links, see the graph below; | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . Examples . For example, to create the graph above, the following command was used: . graph class -o graph.svg \\Symfony\\Component\\Routing\\Router . And for the graph below: . graph class -o graph.svg --inheritance \\Symfony\\Component\\Routing\\Router . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#class-or-interface-dependencies",
     "relUrl": "/docs/capabilities/graphs/#class-or-interface-dependencies"
-  },"18": {
+  },"20": {
     "doc": "Building graphs",
     "title": "Class (interface) extend and implementation dependencies",
     "content": "Example (svg): . Contains only extend and implementation links. To get the graph, use the same command as for the graph above. See the last example. ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#class-interface-extend-and-implementation-dependencies",
     "relUrl": "/docs/capabilities/graphs/#class-interface-extend-and-implementation-dependencies"
-  },"19": {
+  },"21": {
     "doc": "Building graphs",
     "title": "Function or method dependencies",
     "content": "Example (svg): . Contains the functions to be called as well as the fields used. For convenience, fields and methods are combined into named groups for each class. To get the graph, use the graph func command. The command takes one argument, the name of the function. The command can also accept flags: . | -o — name of the file to which the graph will be saved; | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . Example . For example, to create the graph above, the following command was used: . graph func -o graph.svg \\Symfony\\Component\\Routing\\Route::setDefaults . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#function-or-method-dependencies",
     "relUrl": "/docs/capabilities/graphs/#function-or-method-dependencies"
-  },"20": {
+  },"22": {
     "doc": "Building graphs",
     "title": "Links within a class (or graph for the LCOM 4 metric)",
     "content": "Example (svg): . Contains links within the class. Elements that are not used anywhere are highlighted in a separate group. To get the graph, use the command graph lcom4. The command takes one argument, the name of the class. The command can also accept flags: . | -o — name of the file to which the graph will be saved; | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . Example . For example, to create the graph above, the following command was used: . graph lcom4 -o graph.svg \\Symfony\\Component\\Console\\Command\\Command . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#links-within-a-class-or-graph-for-the-lcom-4-metric",
     "relUrl": "/docs/capabilities/graphs/#links-within-a-class-or-graph-for-the-lcom-4-metric"
-  },"21": {
+  },"23": {
     "doc": "Building graphs",
     "title": "Links between files",
     "content": "Example (svg): . Contains links between files, through inclusion in the global space and at the function level. Block connections are marked with dotted lines, global ones — with dashed. To get a graph, use the graph file command. The command takes one argument, the name of the file. The command can also accept flags: . | -o — name of the file to which the graph will be saved; | -r — the level of nesting that is required (value 0 displays only the closest dependencies, 1 — also displays all the closest dependencies for the closest dependencies, and so on); | --root — display in the graph links with files included in the global space; | --block — display in the graph links with files included in functions; | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . If none of the flags (--root, --block) is specified, then by default all links will be displayed. Example . For example, to create the graph above, the following command was used: . graph file -o graph.svg wp-load.php . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#links-between-files",
     "relUrl": "/docs/capabilities/graphs/#links-between-files"
-  },"22": {
+  },"24": {
     "doc": "Building graphs",
     "title": "Namespace dependencies graph",
     "content": "Example (svg): . Contains links between namespaces. To get a graph, use the graph namespace command. The command takes one argument, the name of the namespace. The command can also accept flags: . | -o — name of the file to which the graph will be saved; | -r — the level of nesting that is required (value 0 displays only the closest children, 1 — also displays all the closest children for the closest children, and so on); | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . Example . For example, to create the graph above, the following command was used: . graph namespace --web \\Symfony\\Bridge\\Doctrine -r 2 . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#namespace-dependencies-graph",
     "relUrl": "/docs/capabilities/graphs/#namespace-dependencies-graph"
-  },"23": {
+  },"25": {
     "doc": "Building graphs",
     "title": "Namespace structure graph",
     "content": "Example (svg): . Contains the relationships between namespaces and their child namespaces. To get a graph, use the graph namespace-structure command. The command takes one argument, the name of the namespace. The command can also accept flags: . | -o — name of the file to which the graph will be saved; | -r — the level of nesting that is required (value 0 displays only the closest children, 1 — also displays all the closest children for the closest children, and so on); | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . Example . For example, to create the graph above, the following command was used: . graph namespace-structure --web \\Symfony\\Component\\PropertyInfo . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#namespace-structure-graph",
     "relUrl": "/docs/capabilities/graphs/#namespace-structure-graph"
-  },"24": {
+  },"26": {
     "doc": "Building graphs",
     "title": "Function reachability",
     "content": "Example (svg): . Contains all the ways in which function A can be reached from function B. To get a graph, use the graph func-reachability command. The command can also accept flags: . | --parent — the name of the function from which the reachability will be checked; | --child — function for which reachability will be checked; | --depth — max search depth. Reachability will only be found if the function is called through no more than depth functions. Greater depth for large projects can lead to long run times; | --exclude — a comma-separated list of functions without spaces to be excluded from found paths. Thus, if the path contains a function from this list, then this path will not be displayed; | -o — name of the file to which the graph will be saved; | -r — the level of nesting that is required (value 0 displays only the closest children, 1 — also displays all the closest children for the closest children, and so on); | --web — flag, when set, the graph will be displayed in the browser with the ability to move and scale the graph. | . Example . For example, to create the graph above, the following command was used: . graph func-reachability --web --parent \\WP_REST_Users_Controller::create_item --child \\wp_unslash --depth 10 . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/graphs/#function-reachability",
     "relUrl": "/docs/capabilities/graphs/#function-reachability"
-  },"25": {
+  },"27": {
     "doc": "Home",
     "title": "Take a look at your project from the inside with PhpStats",
     "content": "With PhpStats you can find places in the code that need improvement, as well as be able to consider how various symbols of your system are communicated in the form of graphs, and all this is incredibly fast (analysis of the entire Symfony project (about 1.5kk lines of code) will take no more than 15 seconds from the second analysis). Get started now View it on GitHub . ",
     "url": "http://localhost:4000/phpstats-docs/#take-a-look-at-your-project-from-the-inside-with-phpstats",
     "relUrl": "/#take-a-look-at-your-project-from-the-inside-with-phpstats"
-  },"26": {
+  },"28": {
     "doc": "Home",
     "title": "Table of contents",
     "content": ". | Getting started | What is supported? . | Code metrics | Dependency graphs | Dependencies between symbols | Brief information about the project | . | About the project . | License | Contacts | Contributing | . | . ",
     "url": "http://localhost:4000/phpstats-docs/#table-of-contents",
     "relUrl": "/#table-of-contents"
-  },"27": {
+  },"29": {
     "doc": "Home",
     "title": "Getting started",
     "content": "PhpStats is a tool that collects statistics for the code of your project and, based on these statistics, calculates various qualitative metrics of the code, builds the necessary graphs, and also finds the relationships between symbols in the system. He tries to be fast, at the moment—about 150k lines of code per second on a MacBook Pro 2019 with Core i5. The tool is built on top of NoVerify and written in Go. ",
     "url": "http://localhost:4000/phpstats-docs/#getting-started",
     "relUrl": "/#getting-started"
-  },"28": {
+  },"30": {
     "doc": "Home",
     "title": "What is supported?",
     "content": "PhpStats currently represents four areas: . | Collecting code metrics; | Building dependency graphs; | Analysis of relationships between symbols; | Gathering brief information about the project; | Analysis of the reachability of a function. | . It also allows you to view lists of classes, interfaces, functions, methods, files and namespaces in a tabular form with the ability to sort by metrics. Let’s look at each point separately. Code metrics . PhpStats currently calculates the following metrics: . | Afferent couplings: | Efferent couplings: | Instability: | Abstractness; | Lack of Cohesion in Methods; | Lack of Cohesion in Methods 4 (or the number of connected components of the class.); | Cyclomatic Complexity; | Count of magic numbers in functions and methods. | . Dependency graphs . PhpStats is currently building the following dependency graphs: . | Class (or interface) dependencies; | Class (interface) extend and implementation dependencies; | Function or method dependencies; | Links within a class (or graph for the LCOM 4 metric); | Links between files (included in global and in function); | Namespace dependencies graph; | Namespace structure graph. | . Graphviz is used to build graphs. Dependencies between symbols . PhpStats is currently analyzing the following dependencies: . | For class-class relations: . | Whether one class is extends another and vice versa; | Whether the class implements the interface or vice versa; | What methods, fields and constants are used by one class used by another and in which methods this happens. | . | For class-function relations: . | Function belong to class; | The class is used inside the function; | Used class members in functions; | The function is used in the class (+ all methods where this function is used). | . | For function-function relations: . | Functions belong to the same class; | Does the first function use the second and vice versa; | Whether the first function is reachable from the second through calls and vice versa (+ call stacks to reach the function). | . | . Brief information about the project . PhpStats is collecting various brief information about the project presented below: . General Test project statistics Size Lines of Code (LOC): 611240 Comment Lines of Code (CLOC): 109340 (17.89%) Non-Comment Lines of Code (NCLOC): 501900 (82.11%) Metrics Cyclomatic Complexity Average Complexity per Class: 5.55 Maximum Class Complexity: 29954.00 Minimum Class Complexity: 0.00 Average Complexity per Method: 1.01 Maximum Method Complexity: 142.00 Minimum Method Complexity: 0.00 Average Complexity per Functions: 0.00 Maximum Functions Complexity: 6.00 Minimum Functions Complexity: 0.00 Count of Magic Numbers Average Class Count: 0 Maximum Class Count: 5055 Minimum Class Count: 2 Average Method Count: 0 Maximum Method Count: 50 Minimum Method Count: 0 Average Functions Count: 0 Maximum Method Count: 2 Minimum Method Count: 0 Structure Files: 5323 Namespaces: 1680 Interfaces: 423 Classes 4974 Abstract Classes: 218 (4.04%) Concrete Classes: 4756 (95.96%) Methods: 29738 Constants: 1152 Functions: Named Functions: 66 (3.32%) Anonymous Functions: 1921 (96.68%) . ",
     "url": "http://localhost:4000/phpstats-docs/#what-is-supported",
     "relUrl": "/#what-is-supported"
-  },"29": {
+  },"31": {
     "doc": "Home",
     "title": "About the project",
     "content": "PhpStats is © 2020-2020 by Petr Makhnev. License . PhpStats is distributed by an MIT license. Contacts . Have any questions—welcome in telegram: @petr_makhnev. Contributing . Feel free to contribute to this project. I am always glad to new people. ",
     "url": "http://localhost:4000/phpstats-docs/#about-the-project",
     "relUrl": "/#about-the-project"
-  },"30": {
+  },"32": {
     "doc": "Home",
     "title": "Home",
     "content": " ",
     "url": "http://localhost:4000/phpstats-docs/",
     "relUrl": "/"
-  },"31": {
+  },"33": {
     "doc": "Installation",
     "title": "Installation",
     "content": " ",
     "url": "http://localhost:4000/phpstats-docs/docs/installation/",
     "relUrl": "/docs/installation/"
-  },"32": {
+  },"34": {
     "doc": "Installation",
     "title": "Table of contents",
     "content": ". | Installation . | From source | . | . ",
     "url": "http://localhost:4000/phpstats-docs/docs/installation/#table-of-contents",
     "relUrl": "/docs/installation/#table-of-contents"
-  },"33": {
+  },"35": {
     "doc": "Installation",
     "title": "From source",
     "content": "The first step is to install the Go toolkit if you don’t already have it. To do this, go to the official site and download the required package for your system. After installing the downloaded package, run the following command: . go get -u -v github.com/i582/phpstats . After that, to run PhpStats, just write the following in the terminal: . $ ~/go/bin/phpstats . If you want to build dependency graphs, then you must also install Graphviz. After installation, make sure the path to graphviz is in the Path environment variable. ",
     "url": "http://localhost:4000/phpstats-docs/docs/installation/#from-source",
     "relUrl": "/docs/installation/#from-source"
-  },"34": {
+  },"36": {
     "doc": "Metrics",
     "title": "Metrics",
     "content": " ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/metrics/",
     "relUrl": "/docs/capabilities/metrics/"
-  },"35": {
+  },"37": {
     "doc": "Metrics",
     "title": "Table of contents",
     "content": ". | Available metrics . | Afferent couplings (Ca) | Efferent couplings (Ce) | Instability (I) | Abstractness (A) | Lack of Cohesion in Methods (LCOM) | Lack of Cohesion in Methods 4 (LCOM4) | Cyclomatic complexity (CC) | Count of magic numbers (CMN) | Count fully typed methods (CFTM) | . | . PhpStats collects various quality metrics of the code, which can be used to determine the quality of the project as a whole, or, for example, of the class in particular. There is no separate command for getting metrics, since metrics are displayed in the information about the symbol. So, for example, to get the LCOM4 metric for a certain class, you need to use the info class command for which write the name of the required class. The received class information will contain a field describing the LCOM4 metric. See the detailed description of the info command here. Another option to get the value of the metrics is the list command, which will list classes, functions, etc. with all calculated metrics. See the detailed description of the list command here. ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/metrics/#table-of-contents",
     "relUrl": "/docs/capabilities/metrics/#table-of-contents"
-  },"36": {
+  },"38": {
     "doc": "Metrics",
     "title": "Available metrics",
     "content": "PhpStats currently calculates the following metrics: . | Afferent couplings: | Efferent couplings: | Instability: | Abstractness; | Lack of Cohesion in Methods; | Lack of Cohesion in Methods 4 (or the number of connected components of the class.); | Cyclomatic Complexity; | Count of magic numbers in functions and methods. | . Afferent couplings (Ca) . The number of classes in other packages that depend upon classes within the package is an indicator of the package’s responsibility. Efferent couplings (Ce) . The number of classes in other packages that the classes in a package depend upon is an indicator of the package’s dependence on externalities. Instability (I) . The ratio of efferent coupling (Ce) to total coupling (Ce + Ca). I = Ce / (Ce + Ca) . This metric is an indicator of the package’s resilience to change. The range for this metric is 0 to 1, with I=0 indicating a completely stable package and I=1 indicating a completely unstable package. Abstractness (A) . The ratio of the number of abstract classes in a group to the total number of classes. A = nA / nAll. | nA — the number of abstract classes in a group; | nAll — the total number of classes. | . The range for this metric is 0 to 1: . | 0 — the category is completely concrete; | 1 — the category is completely abstract. | . Lack of Cohesion in Methods (LCOM) . The result of subtracting from one the sum of the number of methods (CM_i) that refer to a certain class field (i) for all fields, divided by the number of methods (CM) multiplied by the number of fields (CF). Lack of Cohesion in Methods 4 (LCOM4) . The number of “connected components” in a class. A connected component is a set of related methods (and class-level variables). There should be only one such a component in each class. If there are 2 or more components, the class should be split into so many smaller classes. Which methods are related? Methods a and b are related if: . | they both access the same class-level variable, or | a calls b, or b calls a. | . After determining the related methods, we draw a graph linking the related methods (use the ‘graph lcom4’ command to build the graph) to each other. LCOM4 equals the number of connected groups of methods. | LCOM4=1 indicates a cohesive class, which is the “good” class. | LCOM4&gt;=2 indicates a problem. The class should be split into so many smaller classes. | LCOM4=0 happens when there are no methods in a class. This is also a “bad” class. | . Information from https://www.aivosto.com/project/help/pm-oo-cohesion.html#LCOM4 . Cyclomatic complexity (CC) . The number of decision points. Cyclomatic complexity is basically a metric to figure out areas of code that needs more attention for the maintainability. It would be basically an input to the refactoring. It definitely gives an indication of code improvement area in terms of avoiding deep nested loop, conditions etc. The decision points is conditional statements like if, for, while, foreach, case, default, continue, break, goto, catch, ternary, coalesce, or, and. Count of magic numbers (CMN) . Magic numbers are any number in code that isn’t immediately obvious to someone with very little knowledge. Code with magic numbers is more difficult to understand and refactor, as it is not always obvious what the author meant by it. The more magic numbers, the more difficult it is to refactor the given code. Count fully typed methods (CFTM) . The number of methods in the class for which there is a type hint for each parameter, as well as the return type. ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/metrics/#available-metrics",
     "relUrl": "/docs/capabilities/metrics/#available-metrics"
-  },"37": {
+  },"39": {
     "doc": "Relations",
     "title": "Relationships between symbols",
     "content": " ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/relations/#relationships-between-symbols",
     "relUrl": "/docs/capabilities/relations/#relationships-between-symbols"
-  },"38": {
+  },"40": {
     "doc": "Relations",
     "title": "Table of contents",
     "content": ". | Collected relationships . | For class-class relations: | For class-function relations: | For function-function relations: | . | . PhpStats allows you to see relationship between classes and methods. For example, how are the two classes related, whether they use each other’s methods and which ones. To get a relation, use the relation all command. The command accepts the following flags: . | --classes — a comma-separated list of classes without spaces for which you want to find a relationship with other classes or functions; | --funcs — a comma-separated list of functions without spaces for which you want to find a relationship with other classes or functions. | . For example: . &gt;&gt;&gt; relation all --classes='Foo,Boo' --funcs='Foo::method,someFunc' . Will output all relationships, between classes, functions and between each class and function. This extended syntax is used to easily specify a large number of symbols, however, if you only need to find relationships between two classes, then it is enough to write the following: . &gt;&gt;&gt; relation all --classes='Foo,Boo' . And for two functions: . &gt;&gt;&gt; relation all --funcs='Foo::method,someFunc' . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/relations/#table-of-contents",
     "relUrl": "/docs/capabilities/relations/#table-of-contents"
-  },"39": {
+  },"41": {
     "doc": "Relations",
     "title": "Collected relationships",
     "content": "For class-class relations: . | Whether one class is extends another and vice versa; | Whether the class implements the interface or vice versa; | What methods, fields and constants are used by one class used by another and in which methods this happens. | . For example: . &gt;&gt;&gt; relation all --classes 'TargetClass,RelatedClass' Class \\TargetClass connection with class \\RelatedClass. Class \\TargetClass extends class \\RelatedClass: true Class \\TargetClass implements interface \\RelatedClass: false Class \\TargetClass uses method \\RelatedClass::relatedMethod in method \\TargetClass::targetMethod. Class \\TargetClass uses field \\RelatedClass::field in method \\TargetClass::targetMethod. Class \\TargetClass uses constant \\RelatedClass::CONSTANT in method \\TargetClass::targetMethod. Class \\RelatedClass extends class \\TargetClass: false Class \\RelatedClass implements interface \\TargetClass: false Class \\RelatedClass uses method \\TargetClass::targetMethod in method \\RelatedClass::relatedMethod. Class \\RelatedClass uses field \\TargetClass::some in method \\RelatedClass::relatedMethod. For class-function relations: . | Function belong to class; | The class is used inside the function; | Used class members in functions; | The function is used in the class (+ all methods where this function is used). For example: | . &gt;&gt;&gt; relation all --classes 'TargetClassA' --funcs 'TargetClassB::targetMethod' Class \\TargetClassA connection with function \\TargetClassB::targetMethod. Class \\TargetClassA contains function \\TargetClassB::targetMethod: false Method \\TargetClassB::targetMethod uses class \\TargetClassA: true As: field \\TargetClassA::field constant \\TargetClassA::CONSTANT Class \\TargetClassA uses function \\TargetClassB::targetMethod: true Uses in the following methods: \\TargetClassA::targetMethod1 \\TargetClassA::targetMethod2 . For function-function relations: . | Functions belong to the same class; | Does the first function use the second and vice versa; | Whether the first function is reachable from the second through calls and vice versa (see Function reachability for details.). | . For example: . &gt;&gt;&gt; relation all --funcs someOtherFunc,someFunc Function \\someOtherFunc connection with function \\someFunc. Functions belong to the same class: false Function \\someFunc is used in function \\someOtherFunc: false Function \\someOtherFunc is used in function \\someFunc: false Is function \\someFunc reachable from function \\someOtherFunc: true To get the graph, enter command graph func-reachability --web --parent \\someOtherFunc --child \\someFunc --depth 10 To get text output of paths, enter the command relation func-reachability --parent \\someOtherFunc --child \\someFunc --show --depth 10 Is function \\someOtherFunc reachable from function \\someFunc: false &gt;&gt;&gt; . ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/relations/#collected-relationships",
     "relUrl": "/docs/capabilities/relations/#collected-relationships"
-  },"40": {
+  },"42": {
     "doc": "Relations",
     "title": "Relations",
     "content": " ",
     "url": "http://localhost:4000/phpstats-docs/docs/capabilities/relations/",
     "relUrl": "/docs/capabilities/relations/"
-  },"41": {
+  },"43": {
     "doc": "Start of work",
     "title": "Start of work",
     "content": "After the configuration file has been created in the folder with the analyzed project, it’s time to start. The collect subcommand is used to start the analysis. Write the following in the terminal to start: . $ ~/go/bin/phpstats collect . If everything is configured correctly, then the analysis of the project will begin and, after it is over, you will receive the following: . Started Indexing [./tests] Linting 11 / 11 [------------------------------------------------------------------------] 100.00% ? p/s Entering interactive mode (type \"help\" for commands) &gt;&gt;&gt; . After completing the analysis, you will be taken to an interactive shell. This interactive shell is used for all interactions with data, getting lists, building graphs and more. In order to get help on the available commands in the program, enter help. In the next section, we’ll take a look at each command separately. ",
