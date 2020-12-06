@@ -20,6 +20,8 @@ parent: Capabilities
 
 There are two ways to output, directly to `svg` and in the browser. The first option (default) is perfect if you need to **save and send** the graph to someone, the second (see flag `--web`) is ideal for **immediate viewing**. When displayed in a browser, the resulting graph **can be moved, as well as its scale**, using the mouse wheel. To try it, download one of the graphs below and open it in a separate browser tab (unfortunately, if you open the graph from `github`, then nothing will work, since `github` prohibits the use of internal scripts, which are necessary for interactive work). 
 
+To build graphs PhpStats uses [Graphviz](https://graphviz.org/download/).
+
 To create a graph in the internal interactive shell, use the `graph` command, which accepts another command that determines the type of the graph. Description and examples of commands below.
 
 ## Class (or interface) dependencies

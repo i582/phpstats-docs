@@ -28,7 +28,7 @@ With PhpStats you can find places in the code that need improvement, as well as 
 
 ## Getting started
 
-**PhpStats** is a tool that *collects statistics* for the code of your project and, based on these statistics, *calculates various qualitative metrics* of the code, *builds the necessary graphs*, and also *finds the relationships between symbols* in the system. He tries to be fast, at the moment—about **150k lines of code per second** on a MacBook Pro 2019 with Core i5.
+**PhpStats** is a tool that *collects statistics* for the code of your project and, based on these statistics, *calculates various qualitative metrics* of the code, *builds the necessary graphs*, and also *finds the relationships between symbols* in the system. It tries to be fast, at the moment—about **150k lines of code per second** on a MacBook Pro 2019 with Core i5.
 
 The tool is built on top of [NoVerify](https://github.com/VKCOM/noverify) and written in [Go](https://golang.org/).
 
@@ -75,9 +75,9 @@ PhpStats is currently building the following dependency graphs:
 
 [Graphviz](https://graphviz.org/download/) is used to build graphs.
 
-### Dependencies between symbols
+### Relations between symbols
 
-PhpStats is currently analyzing the following dependencies:
+PhpStats is currently analyzing the following relations:
 
 1. **For class-class relations:**
     1. Whether one class is **extends** another and vice versa;
@@ -149,10 +149,6 @@ Structure
 
 PhpStats is © 2020-2020 by Petr Makhnev.
 
-### License
-
-PhpStats is distributed by an [MIT license](https://github.com/i582/phpstats/tree/master/LICENSE).
-
 ### Contacts
 
 Have any questions—welcome in telegram: [@petr_makhnev](https://t.me/petr_makhnev).
@@ -160,3 +156,7 @@ Have any questions—welcome in telegram: [@petr_makhnev](https://t.me/petr_makh
 ### Contributing
 
 Feel free to contribute to this project. I am always glad to new people.
+
+### License
+
+PhpStats is distributed by an [MIT license](https://github.com/i582/phpstats/tree/master/LICENSE).
