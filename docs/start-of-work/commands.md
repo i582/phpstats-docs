@@ -100,21 +100,21 @@ Shows a list of classes of 5 elements starting with the 3rd:
 
 ```
 >>> list classes -c 5 -o 2
-Showing 5 classes out of 39 starting from 3
+Showing 5 classes out of 4862 starting from 3
 
- #                      Name                      Aff     Eff    Instab   LCOM    LCOM 4   Class   Classes
-                                                  coup   coup                              deps    depends
---- -------------------------------------------- ------ ------- -------- ------- -------- ------- ---------
- 3   \Symfony\Component\DependencyInjection\      0.00   54.00     1.00   undef       55      54         0
-     Tests\Compiler\AutowirePassTest
- 4   \Symfony\Bundle\FrameworkBundle\             5.00   53.00     0.91   undef        2      53         5
-     FrameworkBundle
- 5   \Symfony\Component\Console\Tests\            0.00   48.00     1.00    0.95       79      48         0
-     ApplicationTest
- 6   \Symfony\Bundle\FrameworkBundle\Tests\       3.00   46.00     0.94    0.99        1      46         3
-     DependencyInjection\FrameworkExtensionTest
- 7   \Symfony\Component\Messenger\Tests\          0.00   44.00     1.00   undef        1      44         0
-     DependencyInjection\MessengerPassTest
+ #                    Name                      Aff      Eff    Instab   LCOM   LCOM 4   Class   Classes    Count fully  
+                                                coup    coup                             deps    depends   typed methods 
+--- ----------------------------------------- -------- ------- -------- ------ -------- ------- --------- ---------------
+ 3   \Symfony\Component\HttpFoundation\        233.00   12.00     0.05   0.82        2      12       233           6(84) 
+     Request                                                                                                             
+ 4   \Symfony\Component\HttpFoundation\        163.00    5.00     0.03   0.36        2       5       163          47(60) 
+     Response                                                                                                            
+ 5   \Symfony\Component\DependencyInjection\   158.00    0.00     0.00   0.33        1       0       158            0(3) 
+     Reference                                                                                                           
+ 6   \Symfony\Component\Console\Command\       118.00    9.00     0.07   0.93        3       9       118           0(37) 
+     Command                                                                                                             
+ 7   \Symfony\Component\HttpFoundation\        115.00    1.00     0.01   0.29        1       1       115           0(17) 
+     ParameterBag                                                       
 ```
 
 And the command:
@@ -137,7 +137,8 @@ Will output information to the file `classes.json`:
 		"lcom": -1,
 		"lcom4": 55,
 		"countDeps": 54,
-		"countDepsBy": 0
+		"countDepsBy": 0,
+		"countFullyTypedMethods": 6
 	},
 	...
 ]
@@ -247,6 +248,10 @@ Count of magic numbers (CMN):
         Code with magic numbers is more difficult to understand and refactor, as it is not
         always obvious what the author meant by it. The more magic numbers, the more difficult
         it is to refactor the given code.
+
+Count fully typed methods (CFTM):
+	The number of methods in the class for which there is a type hint for each parameter, 
+	as well as the return type.
 
 PHPStats (c) 2020
 ```

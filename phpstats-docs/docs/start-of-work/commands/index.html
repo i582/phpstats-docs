@@ -13,21 +13,21 @@ Class \Foo
   Count dependent classes:       0
 </code></pre></div></div><h2 id="list"> <a href="#list" class="anchor-heading" aria-labelledby="list"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> list</h2><p>The <code class="language-plaintext highlighter-rouge">list</code> command is used to list symbols.</p><p>The command accepts the following subcommands:</p><ol><li><code class="language-plaintext highlighter-rouge">classes</code> — list of classes;<li><code class="language-plaintext highlighter-rouge">interfaces</code> or <code class="language-plaintext highlighter-rouge">ifaces</code> — list of interfaces;<li><code class="language-plaintext highlighter-rouge">traits</code> — list of traits;<li><code class="language-plaintext highlighter-rouge">funcs</code> — list of functions;<li><code class="language-plaintext highlighter-rouge">methods</code> — list of methods;<li><code class="language-plaintext highlighter-rouge">namespaces</code> — list of namespaces;<li><code class="language-plaintext highlighter-rouge">files</code> — list of files.</ol><p>For each subcommand, you need to pass the required name, be it a class or a function or something else. Please note that the search is <strong>not strict</strong>, so it is not necessary to enter the full name, however, if several options are suitable for the entered name, then you will receive the first of them, to get the desired one you need to specify the name.</p><p>Also, each of the subcommands accepts the following flags:</p><ol><li><code class="language-plaintext highlighter-rouge">-c</code> — number of classes in the list;<li><code class="language-plaintext highlighter-rouge">-o</code> — shift of the list from the beginning;<li><code class="language-plaintext highlighter-rouge">--json</code> — path to the file for outputting information in the <code class="language-plaintext highlighter-rouge">json</code> format.<li><code class="language-plaintext highlighter-rouge">--sort</code> — column number by which sorting will be performed;<li><code class="language-plaintext highlighter-rouge">-r</code> — sort in reverse order.</ol><p>The <code class="language-plaintext highlighter-rouge">func</code> subcommand also accepts the following flag:</p><ol><li><code class="language-plaintext highlighter-rouge">-e</code> — flag, when built-in functions will be displayed in the list.</ol><p>The <code class="language-plaintext highlighter-rouge">namespace</code> subcommand also accepts the following flag:</p><ol><li><code class="language-plaintext highlighter-rouge">-l</code> — the level of namespaces to be displayed (default: 0 (top-level namespaces)).</ol><h3 class="no_toc" id="example-1"> <a href="#example-1" class="anchor-heading" aria-labelledby="example-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list classes -c 5 -o 2
 </code></pre></div></div><p>Shows a list of classes of 5 elements starting with the 3rd:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list classes -c 5 -o 2
-Showing 5 classes out of 39 starting from 3
+Showing 5 classes out of 4862 starting from 3
 
- #                      Name                      Aff     Eff    Instab   LCOM    LCOM 4   Class   Classes
-                                                  coup   coup                              deps    depends
---- -------------------------------------------- ------ ------- -------- ------- -------- ------- ---------
- 3   \Symfony\Component\DependencyInjection\      0.00   54.00     1.00   undef       55      54         0
-     Tests\Compiler\AutowirePassTest
- 4   \Symfony\Bundle\FrameworkBundle\             5.00   53.00     0.91   undef        2      53         5
-     FrameworkBundle
- 5   \Symfony\Component\Console\Tests\            0.00   48.00     1.00    0.95       79      48         0
-     ApplicationTest
- 6   \Symfony\Bundle\FrameworkBundle\Tests\       3.00   46.00     0.94    0.99        1      46         3
-     DependencyInjection\FrameworkExtensionTest
- 7   \Symfony\Component\Messenger\Tests\          0.00   44.00     1.00   undef        1      44         0
-     DependencyInjection\MessengerPassTest
+ #                    Name                      Aff      Eff    Instab   LCOM   LCOM 4   Class   Classes    Count fully  
+                                                coup    coup                             deps    depends   typed methods 
+--- ----------------------------------------- -------- ------- -------- ------ -------- ------- --------- ---------------
+ 3   \Symfony\Component\HttpFoundation\        233.00   12.00     0.05   0.82        2      12       233           6(84) 
+     Request                                                                                                             
+ 4   \Symfony\Component\HttpFoundation\        163.00    5.00     0.03   0.36        2       5       163          47(60) 
+     Response                                                                                                            
+ 5   \Symfony\Component\DependencyInjection\   158.00    0.00     0.00   0.33        1       0       158            0(3) 
+     Reference                                                                                                           
+ 6   \Symfony\Component\Console\Command\       118.00    9.00     0.07   0.93        3       9       118           0(37) 
+     Command                                                                                                             
+ 7   \Symfony\Component\HttpFoundation\        115.00    1.00     0.01   0.29        1       1       115           0(17) 
+     ParameterBag                                                       
 </code></pre></div></div><p>And the command:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; list classes -c 5 -o 2 --json classes.json
 </code></pre></div></div><p>Will output information to the file <code class="language-plaintext highlighter-rouge">classes.json</code>:</p><div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
 	</span><span class="p">{</span><span class="w">
@@ -40,7 +40,8 @@ Showing 5 classes out of 39 starting from 3
 		</span><span class="nl">"lcom"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
 		</span><span class="nl">"lcom4"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
 		</span><span class="nl">"countDeps"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
-		</span><span class="nl">"countDepsBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+		</span><span class="nl">"countDepsBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+		</span><span class="nl">"countFullyTypedMethods"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
 	</span><span class="p">},</span><span class="w">
 	</span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -117,6 +118,10 @@ Count of magic numbers (CMN):
         Code with magic numbers is more difficult to understand and refactor, as it is not
         always obvious what the author meant by it. The more magic numbers, the more difficult
         it is to refactor the given code.
+
+Count fully typed methods (CFTM):
+	The number of methods in the class for which there is a type hint for each parameter, 
+	as well as the return type.
 
 PHPStats (c) 2020
 </code></pre></div></div><h2 id="about"> <a href="#about" class="anchor-heading" aria-labelledby="about"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> about</h2><p>The <code class="language-plaintext highlighter-rouge">about</code> command is used to show general information about PhpStats.</p><h1 id="additional-commands"> <a href="#additional-commands" class="anchor-heading" aria-labelledby="additional-commands"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Additional commands</h1><p>Also, in addition to the commands above, there are commands for interacting with the interactive shell.</p><ol><li><code class="language-plaintext highlighter-rouge">help</code> — shows a page with all valid commands;<li><code class="language-plaintext highlighter-rouge">clear</code> — clears the console;<li><code class="language-plaintext highlighter-rouge">exit</code> — exits the interactive shell.</ol><hr><footer><p><a href="#top" id="back-to-top">Back to top</a></p><p class="text-small text-grey-dk-100 mb-0">Copyright &copy; 2020-2020 Makhnev Petr. Distributed by an <a href="https://github.com/i582/phpstats/tree/master/LICENSE.txt">MIT license.</a></p><div class="d-flex mt-2"><p class="text-small text-grey-dk-000 mb-0"> <a href="https://github.com/i582/phpstats-docs/tree/master/docs/start-of-work/commands.md" id="edit-this-page">Edit this page on GitHub</a></p></div></footer></div></div><div class="search-overlay"></div></div>

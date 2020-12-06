@@ -16,18 +16,6 @@ nav_order: 2
 
 ---
 
-## For Linux
-
-TODO.
-
-## For MacOS
-
-TODO.
-
-## For Windows
-
-TODO.
-
 ## From source
 
 The first step is to install the Go toolkit if you don't already have it. To do this, go to the official [site](https://golang.org/dl/) and download the required package for your system.

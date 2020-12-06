@@ -95,7 +95,7 @@ PhpStats is currently analyzing the following dependencies:
 
 ### Brief information about the project
 
-PhpStats is currently collecting various **brief** information about the project presented below:
+PhpStats is collecting various **brief** information about the project presented below:
 
 ```
 General Test project statistics
