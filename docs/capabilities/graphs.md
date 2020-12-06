@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Building graphs
+title: Graphs
 nav_order: 2
 parent: Capabilities
 ---

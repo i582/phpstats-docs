@@ -34,7 +34,7 @@ The tool is built on top of [NoVerify](https://github.com/VKCOM/noverify) and wr
 
 ## What is supported?
 
-PhpStats currently represents four areas:
+PhpStats currently represents five areas:
 
 1. Collecting code **metrics**;
 2. Building **dependency graphs**;
@@ -97,7 +97,7 @@ PhpStats is currently analyzing the following dependencies:
 
 ### Brief information about the project
 
-PhpStats is collecting various **brief** information about the project presented below:
+PhpStats is currently collecting various **brief** information about the project presented below:
 
 ```
 General Test project statistics
