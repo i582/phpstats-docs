@@ -23,7 +23,7 @@ The first step is to install the Go toolkit if you don't already have it. To do 
 After installing the downloaded package, run the following command:
 
 ```
-go get -u -v github.com/i582/phpstats
+go get -v github.com/i582/phpstats
 ```
 
 After that, to run **PhpStats**, just write the following in the terminal:
